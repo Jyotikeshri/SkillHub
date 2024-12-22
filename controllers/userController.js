@@ -133,7 +133,7 @@ export const loginUser = catchError(async (req, res, next) => {
     }
 
     // Generate and send token
-    sendToken(user, 200, res);
+    await sendToken(user, 200, res);
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
