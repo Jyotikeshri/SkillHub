@@ -2,61 +2,56 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const accessTokenExpire = parseInt(
-  process.env.ACCESS_TOKEN_EXPIRE || "300",
+  process.env.ACCESS_TOKEN_EXPIRE || "300", // 5 minutes
   10
 );
 const refreshTokenExpire = parseInt(
-  process.env.REFRESH_TOKEN_EXPIRE || "1200",
+  process.env.REFRESH_TOKEN_EXPIRE || "1200", // 20 minutes
   10
 );
 
-//option for cookies
+// Option for cookies
 export const accessTokenOptions = {
   expires: new Date(Date.now() + accessTokenExpire * 60 * 60 * 1000),
   maxAge: accessTokenExpire * 60 * 60 * 1000,
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Allow cross-origin cookies in production
+  secure: process.env.NODE_ENV === "production", // Secure cookies only in production
+  domain:
+    process.env.NODE_ENV === "production" ? "http://localhost:3000" : undefined, // Replace with your actual domain in production
 };
+
 export const refreshTokenOptions = {
   expires: new Date(Date.now() + refreshTokenExpire * 24 * 60 * 60 * 1000),
   maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000,
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Allow cross-origin cookies in production
+  secure: process.env.NODE_ENV === "production", // Secure cookies only in production
+  domain:
+    process.env.NODE_ENV === "production" ? "http://localhost:3000" : undefined, // Replace with your actual domain in production
 };
-
-// export const accessTokenOptions = {
-//   expires: new Date(Date.now() + accessTokenExpire * 60 * 60 * 1000), // 10 minutes in milliseconds
-//   maxAge: accessTokenExpire * 60 * 60 * 1000, // Same as above
-//   httpOnly: true,
-//   secure: process.env.NODE_ENV === "production", // Secure in production
-//   sameSite: "lax",
-// };
-
-// export const refreshTokenOptions = {
-//   expires: new Date(Date.now() + refreshTokenExpire * 24 * 60 * 60 * 1000), // 40 minutes in milliseconds
-//   maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000, // Same as above
-//   httpOnly: true,
-//   secure: process.env.NODE_ENV === "production", // Secure in production
-//   sameSite: "lax",
-// };
 
 export const sendToken = async (user, statusCode, res) => {
   const accessToken = user.signAccessToken();
   const refreshToken = user.signRefreshToken();
+  console.log("NODE_ENV:", process.env.NODE_ENV); // Should log "production" in production environment
 
-  // upload session to redis
-  console.log("accessToken: " + accessToken);
-  console.log("refreshToken: " + refreshToken);
-
-  // only set secure to true in production
-  if (process.env.NODE_ENV === "production") {
-    accessTokenOptions.secure = true;
+  // Log the tokens for debugging (don't log them in production)
+  if (process.env.NODE_ENV !== "production") {
+    console.log("accessToken: " + accessToken);
+    console.log("refreshToken: " + refreshToken);
   }
 
+  // Set cookies in the response
   res.cookie("access_token", accessToken, accessTokenOptions);
   res.cookie("refresh_token", refreshToken, refreshTokenOptions);
-  console.log("cookies: " + res.cookie.access_token);
-  console.log("cookies: " + res.cookie.refresh_token);
+
+  // Log cookie values (Note: This won't log the actual cookie values, but you can inspect them in the browser dev tools)
+
+  console.log("Cookies set: ", {
+    access_token: res.cookies.access_token,
+    refresh_token: res.cookies.refresh_token,
+  });
 
   res.status(statusCode).json({
     success: true,
