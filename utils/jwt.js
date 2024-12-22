@@ -17,8 +17,7 @@ export const accessTokenOptions = {
   httpOnly: true,
   sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Allow cross-origin cookies in production
   secure: process.env.NODE_ENV === "production", // Secure cookies only in production
-  domain:
-    process.env.NODE_ENV === "production" ? "http://localhost:3000" : undefined, // Replace with your actual domain in production
+  // Replace with your actual domain in production
 };
 
 export const refreshTokenOptions = {
@@ -27,8 +26,7 @@ export const refreshTokenOptions = {
   httpOnly: true,
   sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Allow cross-origin cookies in production
   secure: process.env.NODE_ENV === "production", // Secure cookies only in production
-  domain:
-    process.env.NODE_ENV === "production" ? "http://localhost:3000" : undefined, // Replace with your actual domain in production
+  // Replace with your actual domain in production
 };
 
 export const sendToken = async (user, statusCode, res) => {
