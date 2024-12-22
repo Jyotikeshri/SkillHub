@@ -11,10 +11,11 @@ import ejs from "ejs";
 import sendMail from "../utils/sendMail.js";
 import { fileURLToPath } from "url";
 import {
-  accessTokenOptions,
-  refreshTokenOptions,
   sendToken,
+  refreshTokenOptions,
+  accessTokenOptions,
 } from "../utils/jwt.js";
+
 import { redis } from "../utils/redis.js";
 import {
   getAllUsersService,
