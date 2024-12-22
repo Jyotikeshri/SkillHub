@@ -30,6 +30,8 @@ export const sendToken = async (user, statusCode, res) => {
   const accessToken = await user.signAccessToken();
   const refreshToken = await user.signRefreshToken();
 
+  console.log(user, " ", statusCode, " ", refreshToken);
+
   // No Redis operation here, all the data is stored and fetched directly from the database
 
   // Ensure the cookies are secure in production
@@ -40,6 +42,8 @@ export const sendToken = async (user, statusCode, res) => {
   // Set the cookies with the access and refresh tokens
   res.cookie("access_token", accessToken, accessTokenOptions);
   res.cookie("refresh_token", refreshToken, refreshTokenOptions);
+
+  console.log(res.cookie);
 
   // Send the response
   res.status(statusCode).json({
