@@ -41,8 +41,8 @@ export const refreshTokenOptions = {
 // };
 
 export const sendToken = async (user, statusCode, res) => {
-  const accessToken = user.SignAccessToken();
-  const refreshToken = user.SignRefreshToken();
+  const accessToken = user.signAccessToken();
+  const refreshToken = user.signRefreshToken();
 
   // upload session to redis
   console.log("accessToken: " + accessToken);
