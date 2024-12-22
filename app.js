@@ -23,10 +23,15 @@ app.use(express.json({ limit: "50mb" }));
 // cookies parser
 app.use(cookieParser());
 
+const allowedOrigins = [
+  "http://localhost:3000", // For local development
+  "https://your-frontend-domain.com", // Replace with your actual frontend domain
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    credentials: true,
+    origin: allowedOrigins,
+    credentials: true, // Allow credentials
   })
 );
 

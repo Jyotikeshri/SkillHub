@@ -17,15 +17,18 @@ const refreshTokenExpire = parseInt(
 export const accessTokenOptions = {
   expires: new Date(Date.now() + accessTokenExpire * 60 * 60 * 1000),
   maxAge: accessTokenExpire * 60 * 60 * 1000,
+  secure: process.env.NODE_ENV === "production",
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
 };
 
 export const refreshTokenOptions = {
   expires: new Date(Date.now() + refreshTokenExpire * 24 * 60 * 60 * 1000),
   maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000,
+  secure: process.env.NODE_ENV === "production",
+
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
 };
 
 export const sendToken = (user, statusCode, res) => {
