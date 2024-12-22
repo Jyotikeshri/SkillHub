@@ -25,7 +25,8 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:3000", // For local development
-  "https://your-frontend-domain.com", // Replace with your actual frontend domain
+  "https://skillhub-five.vercel.app",
+  //  // Replace with your actual frontend domain
 ];
 
 app.use(
