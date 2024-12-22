@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Reply to Your Question - <%= title %></title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 2px solid #007bff;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        font-size: 24px;
+        color: #4b0cc0;
+        margin: 0;
+      }
+      .content {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555555;
+      }
+      .content p {
+        margin: 10px 0;
+      }
+      .content .cta-button {
+        display: block;
+        text-align: center;
+        margin: 20px 0;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #4b0cc0;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      .content .cta-button:hover {
+        background-color: #0056b3;
+      }
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        color: #999999;
+        margin-top: 30px;
+        border-top: 1px solid #eeeeee;
+        padding-top: 20px;
+      }
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>New Reply to Your Question</h1>
+      </div>
+      <div class="content">
+        <p>Hi <strong><%= name %></strong>,</p>
+        <p>
+          Someone has replied to your question about the course "<strong
+            ><%= title %></strong
+          >".
+        </p>
+        <p>
+          You can view the reply by visiting our website. Click the button below
+          to check it out:
+        </p>
+        <a href="https://yourwebsite.com" class="cta-button">View Reply</a>
+      </div>
+      <div class="footer">
+        <p>
+          If you need further assistance, please don't hesitate to
+          <a href="mailto:support@yourwebsite.com">contact us</a>.
+        </p>
+        <p>Best regards,</p>
+        <p>The Support Team</p>
+      </div>
+    </div>
+  </body>
+</html>

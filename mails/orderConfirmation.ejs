@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation - <%= order.name %></title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 3px solid #007bff;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        font-size: 24px;
+        color: #4b0cc0;
+        margin: 0;
+      }
+      .order-details {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+      }
+      .order-details p {
+        margin: 5px 0;
+      }
+      .order-details strong {
+        color: #333;
+      }
+      .cta-button {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #4b0cc0;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        text-align: center;
+      }
+      .cta-button:hover {
+        background-color: #0056b3;
+      }
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+        margin-top: 30px;
+        border-top: 1px solid #eeeeee;
+        padding-top: 20px;
+      }
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Order Confirmation</h1>
+      </div>
+      <div class="order-details">
+        <p>Hi,</p>
+        <p>
+          Thank you for purchasing the course "<strong><%= order.name %></strong
+          >". We’re excited to have you on board!
+        </p>
+        <p>Here are the details of your order:</p>
+        <ul>
+          <li><strong>Course Name:</strong> <%= order.name %></li>
+          <li><strong>Price:</strong> $<%= order.price %></li>
+          <li><strong>Purchase Date:</strong> <%= order.date %></li>
+        </ul>
+        <p>
+          You can access the course anytime by logging into your account on our
+          platform.
+        </p>
+        <a href="https://yourwebsite.com/dashboard" class="cta-button"
+          >Go to My Courses</a
+        >
+      </div>
+      <div class="footer">
+        <p>
+          If you have any questions, feel free to
+          <a href="mailto:support@yourwebsite.com">contact our support team</a>.
+        </p>
+        <p>Happy learning!</p>
+        <p>Best regards,</p>
+        <p><strong>Your Company Name</strong></p>
+      </div>
+    </div>
+  </body>
+</html>
